@@ -1,0 +1,58 @@
+<body bgcolor="#000000">
+<center>
+    <canvas id="canvas" width="960" height="560"></canvas>
+</center>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script>
+
+    $(document).ready(function () {
+        var canvas = $("#canvas")[0];
+        var ctx = canvas.getContext("2d");
+        var w = $("#canvas").width();
+        var h = $("#canvas").height();
+
+        function init() {
+            if (typeof print_loop != "undefined")
+                clearInterval(print_loop);
+            print_loop = setInterval(paint, 60);
+            if (typeof game_loop != "undefined")
+                clearInterval(game_loop);
+            print_loop = setInterval(game, 60);
+        }
+        init();
+
+        var img = new Image();
+        img.src = "./graphic/worldblock/ground.bmp";
+
+        function paint() {
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, w, h);
+
+            ctx.drawImage(img, 40*0, 40*13, 40, 40);
+            ctx.drawImage(img, 40*1, 40*13, 40, 40);
+            ctx.drawImage(img, 40*2, 40*13, 40, 40);
+            ctx.drawImage(img, 40*3, 40*13, 40, 40);
+
+            ctx.strokeStyle = "black";
+            ctx.strokeRect(0, 0, w, h);
+        }
+
+        function game() {
+
+        }
+
+        $(document).keydown(function (e) {
+            var key = e.which;
+            console.log(key);
+        })
+
+        $(document).keyup(function (e) {
+            var key = e.which;
+            console.log(key);
+        })
+    })
+
+</script>
+</body>
